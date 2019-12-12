@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'ly.img.android.pesdk'
+
+
+pesdkConfig {
+
+    // Escribimos el nombre de la licencia que hemos enviado al directorio assets
+    licencePath "LICENSE"
+    supportLibVersion "27.1.1"
+
+    // Definimos los modulos que necesitemos
+    modules {
+        // Agregamos los mudulos backend
+        include 'ly.img.android.pesdk.operation:text'
+        include 'ly.img.android.pesdk.operation:frame'
+        include 'ly.img.android.pesdk.operation:focus'
+        include 'ly.img.android.pesdk.operation:brush'
+        include 'ly.img.android.pesdk.operation:camera'
+        include 'ly.img.android.pesdk.operation:filter'
+        include 'ly.img.android.pesdk.operation:sticker'
+        include 'ly.img.android.pesdk.operation:overlay'
+        include 'ly.img.android.pesdk.operation:adjustment'
+        include 'ly.img.android.pesdk.operation:text-design'
+        include 'ly.img.android.pesdk.operation:abstract-sticker'
+
+        // Agregamos todos los modulos UI que necesitemos
+        include 'ly.img.android.pesdk.ui.mobile_ui:core'
+        include 'ly.img.android.pesdk.ui.mobile_ui:text'
+        include 'ly.img.android.pesdk.ui.mobile_ui:focus'
+        include 'ly.img.android.pesdk.ui.mobile_ui:frame'
+        include 'ly.img.android.pesdk.ui.mobile_ui:brush'
+        include 'ly.img.android.pesdk.ui.mobile_ui:filter'
+        include 'ly.img.android.pesdk.ui.mobile_ui:camera'
+        include 'ly.img.android.pesdk.ui.mobile_ui:sticker'
+        include 'ly.img.android.pesdk.ui.mobile_ui:overlay'
+        include 'ly.img.android.pesdk.ui.mobile_ui:transform'
+        include 'ly.img.android.pesdk.ui.mobile_ui:text-design'
+        include 'ly.img.android.pesdk.ui.mobile_ui:adjustment'
+
+        // Agregar el serializador si lo necesitamos
+        include 'ly.img.android.pesdk:serializer'
+
+        //Agregue paquetes assets si los necesitamos
+        include 'ly.img.android.pesdk.assets:font-basic'
+        include 'ly.img.android.pesdk.assets:font-text-design'
+        include 'ly.img.android.pesdk.assets:frame-basic'
+        include 'ly.img.android.pesdk.assets:filter-basic'
+        include 'ly.img.android.pesdk.assets:overlay-basic'
+        include 'ly.img.android.pesdk.assets:sticker-shapes'
+        include 'ly.img.android.pesdk.assets:sticker-emoticons'
+    }
+}
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    defaultConfig {
+        applicationId "com.photoeditorsdk.android.app"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            useProguard true
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //Agregamos la compatibilidad
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
+    implementation 'com.google.firebase:firebase-database:16.0.4'
+    implementation 'com.google.firebase:firebase-storage:9.2.1'
+    implementation 'com.google.firebase:firebase-auth:9.2.1'
+    implementation "com.android.support:support-v4:27.0.0"
+}
+apply plugin: 'com.google.gms.google-services'

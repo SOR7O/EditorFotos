@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Editor de imagenes</string>
+    <string name="titulo">EDITOR DE IMAGENES</string>
+    <string name="camara">CAMARA</string>
+    <string name="galeria">GALERIA</string>
+    <string name="dale_vida_a_tus_fotos">DALE VIDA A TUS FOTOS</string>
+</resources>
